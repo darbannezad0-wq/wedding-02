@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wedding Invitation | Aydin &amp; Zoya</title>
+  <meta name="description" content="We joyfully invite you to celebrate the wedding union of Aydin &amp; Zoya. Save the date and explore event details.">
+
+  <!-- Google Fonts: Great Vibes, Playfair Display, Cormorant Garamond, Outfit, Noto Nastaliq Urdu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Audio Controls (Top-Right) -->
+  <button id="musicToggleBtn" class="floating-btn floating-music-btn" aria-label="Toggle Romantic Background Music" title="Play / Mute Music">
+    <span class="music-icon-box">
+      <!-- Animated Sound Wave Bars when playing -->
+      <span class="sound-wave">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </span>
+      <!-- Speaker SVG -->
+      <svg class="speaker-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zm-2.5-1.23L6.5 6.5H3c-.83 0-1.5.67-1.5 1.5v8c0 .83.67 1.5 1.5 1.5h3.5l5 4.5c.82.74 2 .16 2-.95V2.95c0-1.11-1.18-1.69-2-.95z"/>
+      </svg>
+      <!-- Mute Slash SVG -->
+      <svg class="mute-slash-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M3.27 2L2 3.27l4.99 4.99L6.5 8.5H3c-.83 0-1.5.67-1.5 1.5v4c0 .83.67 1.5 1.5 1.5h3.5l5 4.5c.82.74 2 .16 2-.95v-3.56l4.24 4.24c-.75.49-1.59.86-2.5 1.04v2.06c1.47-.26 2.81-.88 3.94-1.74L19.73 23 21 21.73 3.27 2zM12 4.95v3.56l2.39 2.39L14 10.15V5.29c2.89.86 5 3.54 5 6.71 0 .61-.08 1.2-.24 1.76l1.55 1.55c.44-1.04.69-2.18.69-3.37 0-4.28-2.99-7.86-7-8.77V3.23c0-.82-.74-1.3-1.44-.95L12 3.4v1.55z"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- Floating Language Toggle (Bottom-Left) -->
+  <button id="langToggleBtn" class="floating-btn floating-lang-btn" aria-label="Switch Language (English / Urdu)" title="Change Language">
+    <svg class="globe-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg>
+    <span id="langLabel" class="lang-text">اردو</span>
+  </button>
+
+  <!-- Ambient Falling Petal Canvas (Overlay) -->
+  <canvas id="petalCanvas" class="petal-canvas"></canvas>
+
+  <!-- Main Mobile-First Wrapper Container -->
+  <main class="invitation-container" id="mainContainer">
+
+    <!-- ==========================================
+         SECTION 1: OPENING ENVELOPE (Full Viewport)
+         ========================================== -->
+    <section class="section section-envelope" id="sectionEnvelope" aria-label="Wedding Envelope">
+      <div class="envelope-wrapper">
+        <div class="envelope-outer" id="envelopeOuter">
+          <!-- Top Triangle Flap -->
+          <div class="envelope-flap" id="envelopeFlap">
+            <div class="flap-texture"></div>
+          </div>
+
+          <!-- Inside Greeting Card Peek -->
+          <div class="envelope-card-peek">
+            <div class="card-peek-content">
+              <span class="peek-monogram">A &amp; Z</span>
+              <span class="peek-text" data-i18n="envelopePeek">You are cordially invited</span>
+            </div>
+          </div>
+
+          <!-- Envelope Pocket / Front Body -->
+          <div class="envelope-pocket">
+            <div class="pocket-watercolor-texture"></div>
+            <div class="pocket-gold-filigree"></div>
+            
+            <!-- Wax Seal Button Centered -->
+            <button class="wax-seal-btn" id="waxSealBtn" aria-label="Tap to Open Envelope">
+              <div class="wax-seal-outer-ring">
+                <div class="wax-seal-inner">
+                  <div class="seal-emblem">❦</div>
+                  <span class="seal-text" data-i18n="tapToOpen">TAP TO OPEN</span>
+                </div>
+              </div>
+              <div class="seal-pulse"></div>
+            </button>
+
+            <!-- Envelope Calligraphy Badge -->
+            <div class="envelope-caption">
+              <p class="caption-names" data-i18n="envelopeNames">Aydin &amp; Zoya</p>
+              <p class="caption-date" data-i18n="envelopeDate">December 18, 2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Sections Wrapper (Visible & Scrollable) -->
+    <div class="invitation-body" id="invitationBody">
+
+      <!-- ==========================================
+           SECTION 2: COUPLE INTRO
+           ========================================== -->
+      <section class="section section-couple reveal-on-scroll" id="sectionCouple" aria-label="The Happy Couple">
+        <div class="card garden-card">
+          <!-- Watercolor Garden Background Artwork -->
+          <div class="garden-artwork-container">
+            <img src="assets/garden-bg.jpg" alt="Romantic Watercolor Garden" class="garden-bg-img" loading="eager">
+            <div class="garden-overlay-gradient"></div>
+          </div>
+
+          <div class="couple-content-box">
+            <div class="bismillah-header" data-i18n="bismillah">
+              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+            <p class="invitation-intro-sub" data-i18n="togetherWithFamilies">Together with their families</p>
+
+            <!-- Groom Block -->
+            <div class="person-block groom-block">
+              <h2 class="person-name groom-name" id="groomName" data-i18n="groomName">Aydin Farooq</h2>
+              <p class="person-lineage" data-i18n="groomParents">Son of Mr. &amp; Mrs. Tariq Farooq</p>
+              <p class="person-credential" data-i18n="groomProfession">Architectural Designer, M.Arch</p>
+            </div>
+
+            <!-- Monogram / Ampersand Divider -->
+            <div class="ornate-divider">
+              <span class="divider-line"></span>
+              <span class="divider-symbol">
+                <svg viewBox="0 0 40 40" width="32" height="32" class="gilded-ampersand-svg">
+                  <path d="M20 5 C15 5 12 9 12 14 C12 18 15 21 18 23 L13 29 C11 31 10 33 10 36 C10 39 13 41 17 41 C22 41 27 37 27 32 C27 27 23 23 20 20 L24 15 C26 13 27 11 27 9 C27 6 24 5 20 5 Z M18 10 C20 10 22 11 22 13 C22 15 20 17 18 19 C16 17 15 15 15 13 C15 11 16 10 18 10 Z" fill="url(#goldGrad)"/>
+                  <defs>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#dfb642"/>
+                      <stop offset="50%" stop-color="#c59b27"/>
+                      <stop offset="100%" stop-color="#8a6508"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <span class="divider-line"></span>
+            </div>
+
+            <!-- Bride Block -->
+            <div class="person-block bride-block">
+              <h2 class="person-name bride-name" id="brideName" data-i18n="brideName">Zoya Rehman</h2>
+              <p class="person-lineage" data-i18n="brideParents">Daughter of Mr. &amp; Mrs. Khalid Rehman</p>
+              <p class="person-credential" data-i18n="brideProfession">Clinical Psychologist, M.Sc</p>
+            </div>
+
+            <!-- Welcome Paragraph -->
+            <div class="welcome-text-card">
+              <p class="welcome-quote" data-i18n="welcomeParagraph">
+                "And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them, and He placed between you love and mercy."
+              </p>
+              <p class="welcome-subtext" data-i18n="welcomeSubtext">
+                Request the honour of your gracious presence and heartfelt prayers as they embark upon the sacred journey of matrimony.
+              </p>
+            </div>
+
+            <!-- Bouncing Scroll Indicator -->
+            <div class="scroll-indicator" id="scrollIndicator">
+              <span class="scroll-text" data-i18n="scrollDown">SCROLL</span>
+              <span class="scroll-arrow">↓</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 3: SCRATCH-TO-REVEAL INVITE CARD
+           ========================================== -->
+      <section class="section section-scratch reveal-on-scroll" id="sectionScratch" aria-label="Scratch to Reveal Invitation">
+        <div class="scratch-section-header">
+          <div class="section-tag" data-i18n="interactiveTag">Interactive Invitation</div>
+          <h2 class="section-heading" data-i18n="scratchHeading">Scratch to Reveal</h2>
+          <p class="section-subheading" data-i18n="scratchPrompt">Rub gently with your finger or cursor to uncover our celebration details!</p>
+        </div>
+
+        <!-- Heart/Card Scratch Container -->
+        <div class="scratch-card-wrapper" id="scratchCardWrapper">
+          <!-- Underneath Content (Revealed on Scratch) -->
+          <div class="scratch-underneath-content" id="scratchRevealedContent">
+            <div class="revealed-badge" data-i18n="revealedBadge">✨ YOU'RE INVITED ✨</div>
+            <h3 class="revealed-title" data-i18n="revealedTitle">The Wedding Celebration</h3>
+            
+            <div class="revealed-details-grid">
+              <div class="detail-item">
+                <span class="detail-label" data-i18n="revealedDayLabel">DAY</span>
+                <strong class="detail-val" data-i18n="revealedDayVal">Friday</strong>
+              </div>
+              <div class="detail-divider"></div>
+              <div class="detail-item">
+                <span class="detail-label" data-i18n="revealedDateLabel">DATE</span>
+                <strong class="detail-val highlight" data-i18n="revealedDateVal">Dec 18, 2026</strong>
+              </div>
+              <div class="detail-divider"></div>
+              <div class="detail-item">
+                <span class="detail-label" data-i18n="revealedTimeLabel">TIME</span>
+                <strong class="detail-val" data-i18n="revealedTimeVal">6:30 PM</strong>
+              </div>
+            </div>
+
+            <p class="revealed-venue-summary" data-i18n="revealedVenueSummary">
+              The Grand Rosewater Ballroom &bull; Islamabad
+            </p>
+          </div>
+
+          <!-- HTML5 Canvas Overlay (Scratch Layer) -->
+          <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+
+          <!-- Scratch Progress Indicator -->
+          <div class="scratch-meter-pill" id="scratchMeter">
+            <span class="scratch-meter-icon">✨</span>
+            <span class="scratch-meter-text" id="scratchMeterText">Scratch here to reveal</span>
+          </div>
+        </div>
+
+        <!-- Save the Date Calendar Button -->
+        <div class="save-the-date-box">
+          <button id="saveDateBtn" class="pill-btn save-date-btn" aria-label="Add to Calendar">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" class="calendar-icon-svg">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <circle cx="12" cy="15" r="1.5" fill="currentColor"></circle>
+            </svg>
+            <span data-i18n="saveTheDateBtn">SAVE THE DATE (.ICS)</span>
+          </button>
+        </div>
+
+        <!-- Horizontal Swipeable Photo Strip (CSS Scroll-Snap) -->
+        <div class="photo-strip-container">
+          <div class="photo-strip-header">
+            <span class="strip-title" data-i18n="momentsTitle">Moments Together</span>
+            <span class="strip-hint" data-i18n="swipeHint">Swipe &rarr;</span>
+          </div>
+          <div class="photo-strip-track" id="photoStripTrack">
+            <div class="photo-strip-item">
+              <img src="assets/couple-1.jpg" alt="Aydin &amp; Zoya in Rose Garden" loading="lazy">
+              <span class="photo-caption" data-i18n="photo1Caption">The Rose Garden</span>
+            </div>
+            <div class="photo-strip-item">
+              <img src="assets/couple-2.jpg" alt="Aydin &amp; Zoya under Wisteria" loading="lazy">
+              <span class="photo-caption" data-i18n="photo2Caption">Under the Wisteria</span>
+            </div>
+            <div class="photo-strip-item">
+              <img src="assets/couple-3.jpg" alt="Dancing at Sunset" loading="lazy">
+              <span class="photo-caption" data-i18n="photo3Caption">Sunset Serenade</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 4: COUNTDOWN TIMER
+           ========================================== -->
+      <section class="section section-countdown reveal-on-scroll" id="sectionCountdown" aria-label="Countdown to Wedding">
+        <div class="card countdown-card">
+          <!-- Rounded Photo Card Header -->
+          <div class="countdown-photo-wrapper">
+            <img src="assets/rings.jpg" alt="Wedding Rings and Floral Details" class="countdown-photo-img" loading="lazy">
+            <div class="countdown-photo-overlay"></div>
+            <div class="countdown-badge">
+              <span class="heart-icon">♥</span>
+            </div>
+          </div>
+
+          <div class="countdown-body">
+            <h2 class="section-heading" data-i18n="countdownHeading">Counting Down to Forever</h2>
+            <p class="section-subheading" data-i18n="countdownSubheading">Every second brings us closer to our big day</p>
+
+            <!-- 4-Grid Boxes: DAYS / HOURS / MINUTES / SECONDS -->
+            <div class="countdown-grid" id="countdownGrid">
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdDays">00</span>
+                <span class="countdown-label" data-i18n="cdDaysLabel">DAYS</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdHours">00</span>
+                <span class="countdown-label" data-i18n="cdHoursLabel">HOURS</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdMinutes">00</span>
+                <span class="countdown-label" data-i18n="cdMinsLabel">MINUTES</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdSeconds">00</span>
+                <span class="countdown-label" data-i18n="cdSecsLabel">SECONDS</span>
+              </div>
+            </div>
+
+            <div class="countdown-date-banner">
+              <span class="banner-icon">✦</span>
+              <span class="banner-text" data-i18n="countdownDateBanner">December 18, 2026 &bull; 6:30 PM PKT</span>
+              <span class="banner-icon">✦</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 5: PROGRAM TIMELINE
+           ========================================== -->
+      <section class="section section-timeline reveal-on-scroll" id="sectionTimeline" aria-label="Program Timeline">
+        <div class="section-header-centered">
+          <div class="section-tag" data-i18n="scheduleTag">Event Schedule</div>
+          <h2 class="section-heading" data-i18n="timelineHeading">Program Timeline</h2>
+          <p class="section-subheading" data-i18n="timelineSubheading">Join us in cherishing each special milestone</p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Item 1: Guest Arrival -->
+          <div class="timeline-item reveal-on-scroll">
+            <div class="timeline-dot">
+              <span class="dot-inner"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-badge" data-i18n="event1Time">6:30 PM</div>
+              <h3 class="timeline-title" data-i18n="event1Title">Guest Arrival &amp; Welcome Drinks</h3>
+              <p class="timeline-desc" data-i18n="event1Desc">
+                Welcome refreshments, live ambient acoustic music, and photo greetings at the Rosewater Foyer.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2: Wedding Ceremony -->
+          <div class="timeline-item highlight-item reveal-on-scroll">
+            <div class="timeline-dot highlight-dot">
+              <span class="dot-inner"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-badge highlight-badge" data-i18n="event2Time">7:30 PM</div>
+              <h3 class="timeline-title" data-i18n="event2Title">Nikkah &amp; Ring Exchange Ceremony</h3>
+              <p class="timeline-desc" data-i18n="event2Desc">
+                The sacred solemnization of vows, exchange of rings, and solemn prayers for the newlyweds.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3: Dinner & Reception -->
+          <div class="timeline-item reveal-on-scroll">
+            <div class="timeline-dot">
+              <span class="dot-inner"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-badge" data-i18n="event3Time">9:00 PM</div>
+              <h3 class="timeline-title" data-i18n="event3Title">Royal Dinner &amp; Celebrations</h3>
+              <p class="timeline-desc" data-i18n="event3Desc">
+                An exquisite multi-course royal feast, cutting of the wedding cake, and family blessings.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 6: VENUE & LOCATION
+           ========================================== -->
+      <section class="section section-venue reveal-on-scroll" id="sectionVenue" aria-label="Venue and Location">
+        <div class="card venue-card">
+          <div class="venue-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="location-pin-svg">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+
+          <div class="section-tag" data-i18n="locationTag">Location</div>
+          <h2 class="section-heading" data-i18n="venueHeading">The Venue</h2>
+          
+          <div class="venue-details-box">
+            <h3 class="venue-name" data-i18n="venueName">The Grand Rosewater Ballroom</h3>
+            <p class="venue-address" data-i18n="venueAddress">
+              Serena Hotel Gardens, Khayaban-e-Suhrawardy, Sector G-5/1, Islamabad, Pakistan
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="venue-actions-row">
+            <a href="https://maps.google.com/?q=The+Grand+Rosewater+Ballroom+Islamabad" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="pill-btn primary-action-btn"
+               id="googleMapsBtn"
+               aria-label="Open location in Google Maps">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                <line x1="9" y1="3" x2="9" y2="18"></line>
+                <line x1="15" y1="6" x2="15" y2="21"></line>
+              </svg>
+              <span data-i18n="mapsBtn">View on Google Maps</span>
+            </a>
+
+            <button class="pill-btn secondary-action-btn" id="copyAddressBtn" aria-label="Copy Address to Clipboard">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span data-i18n="copyAddressBtn">Copy Address</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 7: DRESS CODE
+           ========================================== -->
+      <section class="section section-dress reveal-on-scroll" id="sectionDress" aria-label="Dress Code">
+        <div class="card dress-card">
+          <div class="dress-icon-wrapper">
+            <!-- Shirt / Formal Wear Icon -->
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="dress-icon-svg">
+              <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
+            </svg>
+          </div>
+
+          <div class="section-tag" data-i18n="attireTag">Attire Guidance</div>
+          <h2 class="section-heading" data-i18n="dressHeading">Dress Code</h2>
+          <p class="section-subheading" data-i18n="dressTheme">Formal Elegance &bull; Festive Traditional or Black Tie</p>
+
+          <div class="dress-subsections-grid">
+            <!-- Women's Sub-card -->
+            <div class="dress-item-box">
+              <div class="dress-item-header">
+                <span class="dress-bullet">✦</span>
+                <h3 class="dress-gender-title" data-i18n="dressWomenTitle">Women</h3>
+              </div>
+              <p class="dress-text" data-i18n="dressWomenText">
+                Formal Traditional (Lehenga, Anarkali, Gharara, Sari) or Elegant Evening Gown.
+              </p>
+              <div class="color-palette-row">
+                <span class="palette-swatch swatch-1" title="Dusty Blue"></span>
+                <span class="palette-swatch swatch-2" title="Blush Rose"></span>
+                <span class="palette-swatch swatch-3" title="Champagne Gold"></span>
+                <span class="palette-swatch swatch-4" title="Ivory"></span>
+              </div>
+            </div>
+
+            <!-- Men's Sub-card -->
+            <div class="dress-item-box">
+              <div class="dress-item-header">
+                <span class="dress-bullet">✦</span>
+                <h3 class="dress-gender-title" data-i18n="dressMenTitle">Men</h3>
+              </div>
+              <p class="dress-text" data-i18n="dressMenText">
+                Classic Navy / Charcoal Suit with Gold or Silk Tie, or Embroidered Sherwani / Prince Coat.
+              </p>
+              <div class="color-palette-row">
+                <span class="palette-swatch swatch-5" title="Midnight Navy"></span>
+                <span class="palette-swatch swatch-6" title="Charcoal"></span>
+                <span class="palette-swatch swatch-7" title="Royal Indigo"></span>
+                <span class="palette-swatch swatch-8" title="Ivory Raw Silk"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 8: TRANSPORTATION & ACCOMMODATION
+           ========================================== -->
+      <section class="section section-logistics reveal-on-scroll" id="sectionLogistics" aria-label="Travel and Stay">
+        <div class="section-header-centered">
+          <div class="section-tag" data-i18n="guestGuideTag">Guest Logistics</div>
+          <h2 class="section-heading" data-i18n="logisticsHeading">Travel &amp; Stay</h2>
+        </div>
+
+        <div class="logistics-cards-grid">
+          <!-- Block 1: Transportation -->
+          <div class="card logistics-card reveal-on-scroll">
+            <div class="logistics-card-icon">
+              <!-- Car SVG -->
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <h3 class="logistics-title" data-i18n="transportTitle">Transportation</h3>
+            <div class="logistics-body">
+              <p class="logistics-line" data-i18n="transportInfo">
+                <strong>Complimentary Shuttle Service:</strong> Shuttles depart every 30 minutes from Marriott Islamabad &amp; Islamabad Club.
+              </p>
+              <p class="logistics-detail" data-i18n="transportTiming">
+                <strong>Pickup Time:</strong> 5:45 PM &ndash; 7:00 PM | <strong>Return:</strong> 11:00 PM onward.
+              </p>
+              <p class="logistics-note" data-i18n="transportValet">
+                Valet parking is available at the Grand Ballroom main gate.
+              </p>
+            </div>
+          </div>
+
+          <!-- Block 2: Accommodation -->
+          <div class="card logistics-card reveal-on-scroll">
+            <div class="logistics-card-icon">
+              <!-- Hotel / Bed SVG -->
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"></path>
+                <circle cx="6" cy="12" r="1.5"></circle>
+              </svg>
+            </div>
+            <h3 class="logistics-title" data-i18n="hotelTitle">Accommodation</h3>
+            <div class="logistics-body">
+              <p class="logistics-line" data-i18n="hotelNameDist">
+                <strong>Serena Hotel Islamabad</strong> (On-site / 0 mins) &amp; <strong>Islamabad Marriott</strong> (1.8 km / 5 mins).
+              </p>
+              <div class="promo-code-box">
+                <span class="promo-label" data-i18n="promoLabel">Special Group Rate Promo:</span>
+                <button class="promo-code-badge" id="promoBadgeBtn" title="Click to copy promo code">
+                  <code>AYDINZOYA2026</code>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+              <p class="logistics-note" data-i18n="hotelNote">
+                Please reserve prior to Nov 15, 2026 to avail preferred wedding rate discounts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           FOOTER / BLESSINGS / BACK TO TOP
+           ========================================== -->
+      <footer class="invitation-footer reveal-on-scroll">
+        <div class="footer-filigree">❦</div>
+        <h2 class="footer-names" data-i18n="footerNames">Aydin &amp; Zoya</h2>
+        <p class="footer-blessing" data-i18n="footerBlessing">
+          "Thank you for being part of our cherished memories. Your prayers, love, and presence mean the world to us."
+        </p>
+        <div class="footer-date" data-i18n="footerDate">18 . 12 . 2026</div>
+
+        <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to Top">
+          <span>&uarr;</span>
+          <span data-i18n="backToTop">Back to Top</span>
+        </button>
+
+        <p class="footer-copyright" data-i18n="footerCopyright">With love &bull; The Farooq &amp; Rehman Families</p>
+      </footer>
+
+    </div><!-- End invitation-body -->
+
+  </main>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-notification" id="toastBox" role="alert" aria-live="polite"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
